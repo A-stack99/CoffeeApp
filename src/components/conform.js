@@ -5,7 +5,7 @@ const Conform = ({navigation}) => {
   return (
     <View style={styles.container}>
        <TouchableOpacity onPress={() => navigation.navigate("OrderDelivery")}>
-         <Image source={require('../assets/images/arrow-left.png')} style={styles.icon} />
+         <Image source={require('../assets/images/backArrow.png')} style={styles.icon} />
        </TouchableOpacity>
           <View>
              <Text style={styles.title}>Thank You</Text>
@@ -25,9 +25,9 @@ const Conform = ({navigation}) => {
                 <Text style={styles.itemTitle}>John Hawn</Text>
                 <Text style={styles.itemDesc}>Coffee Shop</Text>
              </View>
-              <View style={styles.quantity}>
+              <View >
                 <TouchableOpacity >
-                  <Image source={require("../assets/images/call.png")} />
+                  <Image source={require("../assets/images/call.png")} style={styles.call}/>
                 </TouchableOpacity>
               </View>
           </View>
@@ -48,8 +48,10 @@ container: {
 },
 icon: {
   position: 'absolute',
-  left: -190,
-  top: -250
+  left: -200,
+  top: -260,
+  width: 30,
+  height: 30
 },
 title: {
   fontSize: 30,
@@ -108,5 +110,13 @@ itemDesc: {
   fontSize: 14,
   color: '#888'
 },
+call: {
+  marginLeft: 20, 
+  width: 54,
+  height: 54,
+  borderRadius: 1,
+  alignItems: 'center',
+  justifyContent: 'center'
+}
 
 })

@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity, ScrollView, FlatList, Dimensions } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity, ScrollView, FlatList, Button} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import BottomTabs from './bottomTab';
 
 const Tab = createBottomTabNavigator();
 const promoImage = require('../assets/images/image.png');
 const coffeeNames = ['Cappuccino', 'Macchiato', 'Latte', 'Americano'];
 
 const coffeeData = [
-  { id: '1', name: 'Cappuccino', price: '$4.53', rating: '4.8', image: require('../assets/images/cofee1.png') },
-  { id: '2', name: 'Macchiato', price: '$4.53', rating: '4.8', image: require('../assets/images/coffee2.png') },
-  { id: '3', name: 'Latte', price: '$4.53', rating: '4.5', image: require('../assets/images/coffee3.png') },
-  { id: '4', name: 'Americano', price: '$4.53', rating: '4.0', image: require('../assets/images/coffee4.png') },
+  { id: 1 , name: 'Cappuccino', price: '$4.53', rating: '4.8', image: require('../assets/images/coffee1.png') },
+  { id: 2 , name: 'Macchiato', price: '$4.53', rating: '4.8', image: require('../assets/images/coffee2.png') },
+  { id: 3, name: 'Latte', price: '$4.53', rating: '4.5', image: require('../assets/images/coffee3.png') },
+  { id: 4 , name: 'Americano', price: '$4.53', rating: '4.0', image: require('../assets/images/coffee4.png') },
 ];
 export const List = ({ navigation }) => {
   const [cart, setCart] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [open, setOpen] = React.useState(false);
 
   const handleAddToCart = (coffeeItem) => {
     setCart([...cart, coffeeItem]);
@@ -27,6 +29,8 @@ export const List = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.navigate("Home")}/>
+    
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.headerContainer}>
           <View style={styles.headerText}>
@@ -42,7 +46,7 @@ export const List = ({ navigation }) => {
           </View>
           <View style={styles.searchContainer}>
             <TouchableOpacity style={{ marginLeft: 20 }}>
-              <Image source={require('../assets/images/pg2Image1.png')} style={styles.icon} />
+              <Image source={require('../assets/images/search-normal.png')} style={styles.icon} />
             </TouchableOpacity>
             <TextInput
               placeholder="Search coffee"
@@ -52,7 +56,7 @@ export const List = ({ navigation }) => {
               onChangeText={setSearchQuery}
             />
             <TouchableOpacity style={styles.filterButton}>
-              <Image source={require('../assets/images/pg2Image2.png')} style={styles.icon} />
+              <Image source={require('../assets/images/filter.png')} style={styles.icon} />
             </TouchableOpacity>
           </View>
         </View>
@@ -103,10 +107,33 @@ export const List = ({ navigation }) => {
             )}
           />
         </View>
+
       </ScrollView>
     </SafeAreaView>
   );
 };
+
+export const Favorites = ()=>{
+  return(
+    <View >
+      <Text style={{backgroundColor:'orange' }} > This is the Favourite Screen</Text>
+    </View>
+  )
+}
+export const Cart = ()=>{
+  return(
+    <View>
+      <Text> This is the Cart Screen</Text>
+    </View>
+  )
+}
+export const Profile = ()=>{
+  return(
+    <View>
+      <Text> This is the Profile Screen</Text>
+    </View>
+  )
+}
 
 const BottomTabs = () => {
   return (
@@ -123,7 +150,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name="Favorites"
-        component={List}
+        component={Favorites}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -133,7 +160,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name="Cart"
-        component={List}
+        component={Cart}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -143,7 +170,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={List}
+        component={Profile}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -156,6 +183,8 @@ const BottomTabs = () => {
 };
 
 export default BottomTabs;
+
+{/* <BottomTabs/> */}
 
 const styles = {
   container: {
@@ -268,14 +297,16 @@ const styles = {
     height: 31,
   },
   categoryContainer: {
-    flex: 1,
+    // flex: 1,
+    width: '421',
+    height: '40',
     marginTop: 120,
     marginLeft: 30,
     marginBottom: 20,
   },
   categoryItem: {
     padding: 10,
-    borderRadius: 25,
+    borderRadius: 15,
     marginRight: 10,
     backgroundColor: '#F3F3F3',
   },
@@ -284,10 +315,14 @@ const styles = {
   },
   categoryText: {
     fontSize: 16,
-    color: '#888',
+    fontWeight: 400,
+    color: '#2F4B4E',
   },
   categoryTextSelected: {
-    color: '#fff',
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 600,
+    lineheight: 17,
   },
   coffeeListContainer: {
     flex: 1,
@@ -314,20 +349,24 @@ const styles = {
     color: '#ffffff',
     marginTop: 5,
     position: 'absolute',
-    top: -210,
+    top: 12,
     left: 35,
   },
   coffeeName: {
     fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: -20,
+    fontWeight: 600,
+    lineheight: 20,
+    marginTop: 10,
     marginLeft: 10,
+    color: '#2F2D2C',
   },
   coffeeDesc: {
     fontSize: 12,
+    fontWeight: 400,
+    lineheight: 15,
     marginTop: 5,
     marginLeft: 10,
-    color: '#888',
+    color: '#9B9B9B',
   },
   priceContainer: {
     flexDirection: 'row',
@@ -336,21 +375,24 @@ const styles = {
   },
   price: {
     fontSize: 18,
+    fontWeight: 600,
+    lineheight: 22,
     color: '#2F4B4E',
     fontWeight: '600',
+    letterSpacing: 1,
+    left: 10,
   },
   addToCartButton: {
     backgroundColor: '#C67C4E',
-    paddingHorizontal: 10,
-    paddingVertical: 2,
-    borderRadius: 8,
+    borderRadius: 10,
+    width: 32,
+    height: 32,
   },
   addToCartIcon: {
     width: 20,
     height: 20,
+    top: 5,
+    left: 5, 
   },
-  tabIcon: {
-    width: 25,
-    height: 25,
-  },
+
 };

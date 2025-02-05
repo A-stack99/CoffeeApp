@@ -13,7 +13,7 @@ const Home =({navigation}) =>{
         <TouchableOpacity style={styles.button}
           onPress={() => navigation.navigate('List')}> 
           <Image source={require('../assets/images/Fixed.png')} style={styles.buttonText} />
-        </TouchableOpacity>
+       </TouchableOpacity>
     </View>
   );
 }
