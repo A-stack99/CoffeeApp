@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, ScrollView, FlatList, Button} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import BottomTabs from './bottomTab';
 
 const Tab = createBottomTabNavigator();
 const promoImage = require('../assets/images/image.png');
@@ -394,5 +393,8 @@ const styles = {
     top: 5,
     left: 5, 
   },
-
+  tabIcon: {
+    width: 25,
+    height: 25,
+  },
 };

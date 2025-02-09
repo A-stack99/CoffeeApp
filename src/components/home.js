@@ -6,15 +6,20 @@ const Home =({navigation}) =>{
   return (
     <View style={styles.container}>
         <Image source={require('../assets/images/bg.png')} style={styles.image} />
-        <View style={styles.textContainer}>
-           <Image source={require('../assets/images/CoffeeWrite.png')}/>
-        </View>
-          <Image source={require('../assets/images/Line.png')} style={styles.imageLine}/>
-        <TouchableOpacity style={styles.button}
-          onPress={() => navigation.navigate('List')}> 
-          <Image source={require('../assets/images/Fixed.png')} style={styles.buttonText} />
-       </TouchableOpacity>
-    </View>
+
+        <View style={styles.overlay} />
+      <View style={styles.textContainer}>
+           <Text style={styles.title}>Coffee so good,{"\n"}your taste buds{"\n"}will love it.</Text>
+           <Text style={styles.subtitle}>The best grain, the finest roast, the{"\n"}powerful flavor.</Text>
+                  
+           </View>
+        
+        <TouchableOpacity style={styles.button}>
+                 <Image source={require("../assets/images/google.png")} style={styles.googleIcon} />
+                 <Text style={styles.buttonText}>Continue with Google</Text>
+         </TouchableOpacity>
+        
+   </View>
   );
 }
 
@@ -25,20 +30,49 @@ const styles = StyleSheet.create({
     flex: 1.9,
     backgroundColor: '#000',
     alignItems: 'center',
-    borderRadius: 10
+    borderRadius: 10,
+    resizeMode:'contain',
   },
+
   image: {
-  flex: 1,
+  flex: 0.5,
     width: '100%',
     height: '50%',
     resizeMode: 'cover',
   },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.3)", 
+  },
   textContainer: {
     alignItems: 'center',
-    top: -70
+    top: -70,
+    justifyContent:'center',
+    position: "absolute",
+    bottom: 80,
+    width:"336",
+    height:"134",
+    top:487,
   },
-  imageLine: {
-    top: -40
+  title:{
+    color:'#ffffff',
+    fontFamily:'sora',
+    fontWeight:'bold',
+    fontSize: 40,
+    lineHeight: 45,
+    textAlign: "center",
+    letterSpacing:1,
+    top:80
+  },
+  subtitle:{
+    color:'#A9A9A9',
+    fontFamily:'sora',
+    fontWeight:'400',
+    fontSize: 16,
+    lineHeight: 21,
+    textAlign: "center",
+    letterSpacing:1,
+    top:110
   },
   button: {
     flexDirection: 'row',
@@ -46,11 +80,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
-    top: -22
+    bottom:-150,
+    width: "90%",
+    height:"65"
+  },
+  googleIcon: {
+    width: 35,
+    height: 35,
+    left:50,
+
   },
   buttonText: { 
+    color:"#0000008A",
+    fontFamily:'sora',
+    fontSize:21,
+    fontWeight: "bold",
     width: 350,
-    height: 60,
+    height: 80,
+    top:25,
+    letterSpacing:1,
+    textAlign:'center'
     
   }
 });
