@@ -28,9 +28,9 @@ export const List = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Home")}/>
+      {/* <TouchableOpacity onPress={() => navigation.navigate("Home")}/> */}
     
-      <ScrollView showsVerticalScrollIndicator={false}>
+     <ScrollView>
         <View style={styles.headerContainer}>
           <View style={styles.headerText}>
             <View>
@@ -55,7 +55,7 @@ export const List = ({ navigation }) => {
               onChangeText={setSearchQuery}
             />
             <TouchableOpacity style={styles.filterButton}>
-              <Image source={require('../assets/images/filter.png')} style={styles.icon} />
+              <Image source={require('../assets/images/filter.png')} style={[styles.icon, {top:2 , left:2}]} />
             </TouchableOpacity>
           </View>
         </View>
@@ -72,6 +72,7 @@ export const List = ({ navigation }) => {
         <FlatList
           style={styles.categoryContainer}
           horizontal
+          showsHorizontalScrollIndicator={false}
           data={coffeeNames}
           keyExtractor={(item) => item}
           renderItem={({ item, index }) => (
@@ -89,7 +90,7 @@ export const List = ({ navigation }) => {
             numColumns={2}
             renderItem={({ item }) => (
               <View style={styles.coffeeContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Detail', { coffee: item })}>
+                <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
                   <Image source={item.image} style={styles.coffeeImage} />
                 </TouchableOpacity>
                 <Image source={require('../assets/images/Rating.png')} style={styles.ratingIcon} />
@@ -99,15 +100,14 @@ export const List = ({ navigation }) => {
                 <View style={styles.priceContainer}>
                   <Text style={styles.price}>{item.price}</Text>
                   <TouchableOpacity style={styles.addToCartButton} onPress={() => handleAddToCart(item)}>
-                    <Image source={require('../assets/images/whiteplus.png')} style={styles.addToCartIcon} />
+                    <Image source={require('../assets/images/plus.png')} style={styles.addToCartIcon} />
                   </TouchableOpacity>
                 </View>
               </View>
             )}
           />
         </View>
-
-      </ScrollView>
+        </ScrollView>
     </SafeAreaView>
   );
 };
@@ -192,7 +192,7 @@ const styles = {
   },
   headerContainer: {
     backgroundColor: '#131313',
-    height: 300,
+    height: 260,
     padding: 10,
   },
   headerText: {
@@ -219,12 +219,12 @@ const styles = {
   searchContainer: {
     flexDirection: 'row',
     backgroundColor: '#313131',
-    width: 350,
-    height: 62,
-    borderRadius: 15,
+    width: '90%',
+    height: 60,
+    borderRadius: 12,
     alignItems: 'center',
-    margin: 10,
-    marginHorizontal: 20,
+    left:18,
+    top:-10
   },
   searchInput: {
     flex: 1,
@@ -234,20 +234,20 @@ const styles = {
     backgroundColor: '#C67C4E',
     padding: 10,
     borderRadius: 8,
-    marginRight: 10,
+    marginRight: 5,
     width: 50,
     height: 50,
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
+    alignItems:'center'
   },
   promoContainer: {
     position: 'absolute',
-    top: 200,
+    top: 175,
     left: 0,
     right: 0,
-    marginBottom: 20,
     padding: 30,
   },
   promoImage: {
@@ -257,30 +257,30 @@ const styles = {
   },
   promoTextContainer: {
     position: 'absolute',
-    top: 50,
+    top: 45,
     left: 50,
   },
   promoTag: {
     backgroundColor: '#ED5151',
     color: '#ffffff',
-    paddingHorizontal: 9,
-    paddingVertical: 6,
-    borderRadius: 10,
+    borderRadius: 6,
     fontSize: 14,
-    width: 60,
+    width: 55,
+    height:23,
+    textAlign:'center'
   },
   promoText: {
     fontSize: 35,
     fontWeight: '600',
     color: '#ffffff',
     letterSpacing: 1,
-    top: 10,
+    top: 7,
   },
   rectangle: {
     position: 'absolute',
-    top: 60,
-    width: 205,
-    height: 31,
+    top: 52,
+    width: 202,
+    height: 29,
     backgroundColor: '#ED5151',
   },
   promoText1: {
@@ -291,17 +291,17 @@ const styles = {
   },
   rectangle1: {
     position: 'absolute',
-    top: 105,
+    top: 97,
     width: 125,
-    height: 31,
+    height: 28,
   },
   categoryContainer: {
-    // flex: 1,
-    width: '421',
-    height: '40',
-    marginTop: 120,
-    marginLeft: 30,
-    marginBottom: 20,
+    flex: 1,
+    marginTop: 118,
+    marginLeft: 22,
+    marginBottom: 8,
+    top:8,
+    height:'auto'
   },
   categoryItem: {
     padding: 10,
@@ -325,7 +325,7 @@ const styles = {
   },
   coffeeListContainer: {
     flex: 1,
-    paddingHorizontal: 20,
+    left:6
   },
   coffeeContainer: {
     backgroundColor: '#fff',
@@ -340,31 +340,31 @@ const styles = {
   },
   ratingIcon: {
     position: 'absolute',
-    top: 18,
+    top: 12,
     left: 10,
+    width:20,
+    height:20
   },
   coffeeRating: {
     fontSize: 14,
     color: '#ffffff',
     marginTop: 5,
     position: 'absolute',
-    top: 12,
+    top: 6,
     left: 35,
   },
   coffeeName: {
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: '600',
     lineheight: 20,
-    marginTop: 10,
-    marginLeft: 10,
+    marginLeft: 5,
     color: '#2F2D2C',
   },
   coffeeDesc: {
     fontSize: 12,
     fontWeight: 400,
     lineheight: 15,
-    marginTop: 5,
-    marginLeft: 10,
+    marginLeft: 5,
     color: '#9B9B9B',
   },
   priceContainer: {
@@ -379,19 +379,19 @@ const styles = {
     color: '#2F4B4E',
     fontWeight: '600',
     letterSpacing: 1,
-    left: 10,
+    left: 5,
   },
   addToCartButton: {
     backgroundColor: '#C67C4E',
     borderRadius: 10,
     width: 32,
     height: 32,
+    alignItems:'center'
   },
   addToCartIcon: {
     width: 20,
     height: 20,
     top: 5,
-    left: 5, 
   },
   tabIcon: {
     width: 25,

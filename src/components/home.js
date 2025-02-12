@@ -1,20 +1,19 @@
 
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-
+import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { List } from './list';
+//  Anam
 const Home =({navigation}) =>{
   return (
     <View style={styles.container}>
         <Image source={require('../assets/images/bg.png')} style={styles.image} />
-
-        <View style={styles.overlay} />
       <View style={styles.textContainer}>
            <Text style={styles.title}>Coffee so good,{"\n"}your taste buds{"\n"}will love it.</Text>
            <Text style={styles.subtitle}>The best grain, the finest roast, the{"\n"}powerful flavor.</Text>
                   
            </View>
         
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('List')}>
                  <Image source={require("../assets/images/google.png")} style={styles.googleIcon} />
                  <Text style={styles.buttonText}>Continue with Google</Text>
          </TouchableOpacity>
@@ -27,32 +26,21 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1.9,
+    flex: 1,
     backgroundColor: '#000',
     alignItems: 'center',
-    borderRadius: 10,
-    resizeMode:'contain',
+    resizeMode:'cover',
   },
 
   image: {
-  flex: 0.5,
+  flex: 0.75,
     width: '100%',
     height: '50%',
     resizeMode: 'cover',
   },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.3)", 
-  },
   textContainer: {
-    alignItems: 'center',
-    top: -70,
-    justifyContent:'center',
+    top: 420,
     position: "absolute",
-    bottom: 80,
-    width:"336",
-    height:"134",
-    top:487,
   },
   title:{
     color:'#ffffff',
@@ -72,7 +60,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     textAlign: "center",
     letterSpacing:1,
-    top:110
+    top:95
   },
   button: {
     flexDirection: 'row',
@@ -80,9 +68,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
-    bottom:-150,
+    bottom:-175,
     width: "90%",
-    height:"65"
+    height:"8%"
   },
   googleIcon: {
     width: 35,
